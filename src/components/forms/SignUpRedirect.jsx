@@ -9,7 +9,7 @@ const SignUpRedirect = ({ setRegister }) => {
       </p>
       <div className="mt-5 flex justify-center">
         <button
-          className="ver:text-black mt-5 h-10 w-30 cursor-pointer rounded-3xl border text-white transition-all duration-150 ease-in hover:scale-105 hover:border-0 hover:bg-white hover:text-black"
+          className="ver:text-black mt-5 h-10 w-30 cursor-pointer rounded-3xl border text-white transition-all duration-150 ease-in hover:scale-105 hover:border-0 hover:bg-white hover:text-black dark:border-white dark:bg-white dark:text-black"
           onClick={() => setRegister((prev) => !prev)}
         >
           SIGN UP

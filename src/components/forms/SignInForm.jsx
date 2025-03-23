@@ -1,8 +1,7 @@
 import { useState } from "react";
 
 // i: import icons
-import { BsFillEyeFill } from "react-icons/bs";
-import { BsFillEyeSlashFill } from "react-icons/bs";
+import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 
 const SignInForm = () => {
   // i: form input
@@ -30,11 +29,16 @@ const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <form className="p-5" onSubmit={(e) => handleFormSubmit(e)}>
-      <h2 className="my-5 text-center text-3xl font-semibold">Welcome Back!</h2>
+    <form
+      className="h-full p-5 dark:bg-slate-500"
+      onSubmit={(e) => handleFormSubmit(e)}
+    >
+      <h2 className="font-poppins my-5 text-center text-3xl font-semibold dark:text-white">
+        Welcome Back!
+      </h2>
 
       {/* email login input */}
-      <label className="font-semibold" htmlFor="email">
+      <label className="font-semibold dark:text-white" htmlFor="email">
         Email
       </label>
       <input
@@ -46,7 +50,7 @@ const SignInForm = () => {
       />
 
       {/* password login input */}
-      <label className="font-semibold" htmlFor="password">
+      <label className="font-semibold dark:text-white" htmlFor="password">
         Password
       </label>
       <div className="relative">
@@ -59,12 +63,12 @@ const SignInForm = () => {
         />
         {showPassword ? (
           <BsFillEyeFill
-            className="absolute top-2 right-3 size-6 cursor-pointer"
+            className="absolute top-2.5 right-3 size-5 cursor-pointer text-slate-600"
             onClick={() => setShowPassword((prev) => !prev)}
           />
         ) : (
           <BsFillEyeSlashFill
-            className="absolute top-2 right-3 size-6 cursor-pointer"
+            className="absolute top-2.5 right-3 size-5 cursor-pointer text-slate-600"
             onClick={() => setShowPassword((prev) => !prev)}
           />
         )}
@@ -75,24 +79,27 @@ const SignInForm = () => {
         {/* remember me */}
         <div className="flex items-center gap-2">
           <input
-            className="size-3 cursor-pointer accent-emerald-600"
+            className="size-3 cursor-pointer accent-emerald-600 dark:accent-violet-500"
             type="checkbox"
             name=""
             id="remember"
           />
-          <label htmlFor="remember" className="cursor-pointer text-sm">
+          <label
+            htmlFor="remember"
+            className="cursor-pointer text-sm dark:text-white"
+          >
             Remember me
           </label>
         </div>
 
         {/* forgot password  */}
         <div>
-          <p className="cursor-pointer text-sm text-blue-500 underline underline-offset-2 transition duration-200 ease-in hover:text-blue-800">
+          <p className="dark:hover:text-gray-00 cursor-pointer text-sm font-semibold text-blue-500 underline underline-offset-2 transition duration-200 ease-in hover:text-blue-800 dark:text-white">
             Forgot Password
           </p>
         </div>
       </div>
-      <button className="h-10 w-full cursor-pointer rounded-sm bg-violet-500 py-1 text-white transition duration-200 ease-in hover:bg-violet-600">
+      <button className="h-10 w-full cursor-pointer rounded-sm bg-violet-500 py-1 text-white transition duration-200 ease-in hover:bg-violet-600 dark:bg-slate-700 dark:hover:bg-slate-800">
         SIGN IN
       </button>
     </form>

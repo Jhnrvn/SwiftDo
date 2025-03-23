@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  * {
+    @apply transition-colors duration-200;
+  }
+}
+
+@theme {
+  --font-poppins: "Poppins", sans-serif;
+}

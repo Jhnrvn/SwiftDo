@@ -8,14 +8,14 @@ import SignUpRedirect from "../components/forms/SignUpRedirect";
 const LoginPage = () => {
   const [register, setRegister] = useState(false);
   return (
-    <div className="min-h-screen w-full pt-35">
+    <div className="grid min-h-screen w-full place-content-center">
       <div className="0 m-auto flex h-110 w-200 overflow-hidden rounded-lg bg-white shadow-lg">
         {/* i: render sign in or sign up form */}
         <div className="w-1/2">
           {register ? <SignUpForm /> : <SignInForm />}
         </div>
         {/* i: render sign in or sign up redirect */}
-        <div className="min-h-100 w-1/2 bg-gradient-to-tr from-blue-500 via-blue-500 to-violet-500 p-5">
+        <div className="min-h-100 w-1/2 bg-gradient-to-tr from-blue-500 via-blue-500 to-violet-500 p-5 dark:to-blue-500 dark:via-violet-600 dark:from-violet-600">
           {register ? (
             <SignInRedirect setRegister={setRegister} />
           ) : (
