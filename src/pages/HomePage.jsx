@@ -1,6 +1,11 @@
+import SideBar from "../components/SideBar";
+import TaskContainer from "../components/TaskContainer";
 const HomePage = () => {
   return (
-    <div>HomePage</div>
+    <div className="h-screen w-full">
+      <SideBar className=""></SideBar>
+      <TaskContainer />
+    </div>
   );
 };
 

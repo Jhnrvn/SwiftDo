@@ -9,9 +9,10 @@ export const useAuthentication = () => {
 };
 export const LoginAuthenticationProvider = ({ children }) => {
   const [authenticated, setAuthenticated] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
   return (
     <LoginAuthenticationContext.Provider
-      value={{ authenticated, setAuthenticated }}
+      value={{ authenticated, setAuthenticated, showSidebar, setShowSidebar }}
     >
       {children}
     </LoginAuthenticationContext.Provider>

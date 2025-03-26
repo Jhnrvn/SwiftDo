@@ -1,7 +1,7 @@
 const SignUpRedirect = ({ setRegister }) => {
   return (
     <>
-      <h3 className="mt-20 text-center text-5xl font-semibold text-white">
+      <h3 className="mt-20 text-center text-3xl font-semibold text-white md:text-5xl">
         Don't have an account?
       </h3>
       <p className="text-md mt-12 text-center text-white">

@@ -1,9 +1,9 @@
 import { useState } from "react";
-// i: import icons
+// i: react icons
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
-// i: import registration Validation
+// i: registration Validation
 import registrationValidation from "../../utils/RegistrationValidation";
-// i: import sweet alert
+// i: sweet alert
 import Swal from "sweetalert2";
 const SignUpForm = ({ setRegister }) => {
   // i: form input
@@ -58,6 +58,7 @@ const SignUpForm = ({ setRegister }) => {
         confirmButtonText: "Ok",
       }).then((result) => {
         if (result.isConfirmed) {
+          // i: render sign in form
           setRegister((prev) => !prev);
         }
       });

@@ -5,6 +5,7 @@ import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import loginValidation from "../../utils/loginValidation";
 // i: import Authentication Hook
 import { useAuthentication } from "../../contexts/LoginAuthenticationProvider";
+import Swal from "sweetalert2";
 
 const SignInForm = () => {
   // i: form input
@@ -27,8 +28,30 @@ const SignInForm = () => {
   const { setAuthenticated } = useAuthentication();
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const isValid = loginValidation();
-    if (isValid) setAuthenticated((prev) => !prev);
+    const { isValid, message } = loginValidation(form);
+    if (isValid) {
+      Swal.fire({
+        width: 350,
+        title: "Login",
+        text: message,
+        icon: "success",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Ok",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setAuthenticated((prev) => !prev);
+        }
+      });
+    } else {
+      Swal.fire({
+        width: 350,
+        title: "Login",
+        text: message,
+        icon: "error",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Ok",
+      });
+    }
   };
 
   // i: toggle password
