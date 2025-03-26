@@ -5,13 +5,15 @@ import Footer from "./components/Footer";
 
 // i: theme context
 import { ThemeContextProvider } from "./contexts/ThemeContextProvider";
+import { LoginAuthenticationProvider } from "./contexts/LoginAuthenticationProvider";
 const App = () => {
-
   return (
     <ThemeContextProvider>
-      <Header />
-      <MainContent />
-      <Footer />
+      <LoginAuthenticationProvider>
+        <Header />
+        <MainContent />
+        <Footer />
+      </LoginAuthenticationProvider>
     </ThemeContextProvider>
   );
 };

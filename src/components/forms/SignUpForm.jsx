@@ -12,6 +12,7 @@ const SignUpForm = ({ setRegister }) => {
     password: "",
     confirmPassword: "",
     terms: false,
+    task: {},
   };
 
   // i: state of form input
@@ -26,9 +27,9 @@ const SignUpForm = ({ setRegister }) => {
 
   // i: handle form Input Change
   const handleInputChange = (e) => {
-    e.preventDefault();
     const { id, value } = e.target;
-    setForm({ ...form, [id]: value });
+    const validValue = value.replace(/\s/g, "").toLowerCase();
+    setForm({ ...form, [id]: validValue });
   };
 
   const handleTerms = (e) => {
@@ -41,11 +42,17 @@ const SignUpForm = ({ setRegister }) => {
   const handleRegistrationSubmission = (e) => {
     e.preventDefault();
     const result = registrationValidation(form);
-    if (result) {
+
+    // i: show alert
+    if (result.isValid) {
+      const account = JSON.parse(localStorage.getItem("account")) || [];
+      account.push(form);
+      localStorage.setItem("account", JSON.stringify(account));
+
       Swal.fire({
         width: 350,
         title: "Registration",
-        text: "Registration Successful",
+        text: result.message,
         icon: "success",
         confirmButtonColor: "#3085d6",
         confirmButtonText: "Ok",
@@ -58,7 +65,7 @@ const SignUpForm = ({ setRegister }) => {
       Swal.fire({
         width: 350,
         title: "Registration",
-        text: "Registration Failed",
+        text: result.message,
         icon: "error",
         confirmButtonColor: "#3085d6",
         confirmButtonText: "Ok",
@@ -74,6 +81,7 @@ const SignUpForm = ({ setRegister }) => {
       <h2 className="my-5 text-center text-3xl font-semibold dark:text-white">
         Create Account
       </h2>
+
       {/* email login input */}
       <label className="font-semibold dark:text-white" htmlFor="email">
         Email
@@ -85,6 +93,8 @@ const SignUpForm = ({ setRegister }) => {
         value={form.email}
         onChange={(e) => handleInputChange(e)}
       />
+
+      {/* password login input */}
       <label className="font-semibold dark:text-white" htmlFor="password">
         Password
       </label>
@@ -118,6 +128,8 @@ const SignUpForm = ({ setRegister }) => {
           />
         )}
       </div>
+
+      {/* confirm password login input */}
       <label
         className="font-semibold dark:text-white"
         htmlFor="confirmPassword"
@@ -154,8 +166,9 @@ const SignUpForm = ({ setRegister }) => {
           />
         )}
       </div>
+
+      {/* checkbox button for terms & condition */}
       <div className="mb-5 flex items-center gap-2">
-        {/* checkbox button for terms & condition */}
         <input
           className="size-3 cursor-pointer accent-emerald-600 dark:accent-violet-500"
           type="checkbox"

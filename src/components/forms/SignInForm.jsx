@@ -1,8 +1,10 @@
 import { useState } from "react";
 // i: import icons
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
-
-
+// i: import login validation
+import loginValidation from "../../utils/loginValidation";
+// i: import Authentication Hook
+import { useAuthentication } from "../../contexts/LoginAuthenticationProvider";
 
 const SignInForm = () => {
   // i: form input
@@ -22,8 +24,11 @@ const SignInForm = () => {
   };
 
   // i: handle form submission
+  const { setAuthenticated } = useAuthentication();
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    const isValid = loginValidation();
+    if (isValid) setAuthenticated((prev) => !prev);
   };
 
   // i: toggle password
