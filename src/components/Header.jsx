@@ -16,7 +16,7 @@ const Header = () => {
       </div>
 
       {/* toggle dark mode and light mode  */}
-      <div className="absolute right-10 flex w-9 items-center justify-center rounded-4xl bg-slate-300 dark:bg-white">
+      <div className="absolute right-5 md:right-10 flex w-9 items-center justify-center rounded-4xl bg-slate-300 dark:bg-white">
         {theme === "light" ? (
           <MdDarkMode
             className="cursor-pointer text-4xl text-slate-950"

@@ -1,7 +1,8 @@
 import { useState } from "react";
-
 // i: import icons
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
+
+
 
 const SignInForm = () => {
   // i: form input
@@ -30,7 +31,7 @@ const SignInForm = () => {
 
   return (
     <form
-      className="h-full p-5 dark:bg-slate-500"
+      className="h-full w-full p-5 dark:bg-slate-500"
       onSubmit={(e) => handleFormSubmit(e)}
     >
       <h2 className="font-poppins my-5 text-center text-3xl font-semibold dark:text-white">
@@ -63,12 +64,12 @@ const SignInForm = () => {
         />
         {showPassword ? (
           <BsFillEyeFill
-            className="absolute top-2.5 right-3 size-5 cursor-pointer text-slate-600"
+            className="absolute top-2.5 right-3 size-5 cursor-pointer text-slate-600 dark:text-violet-700"
             onClick={() => setShowPassword((prev) => !prev)}
           />
         ) : (
           <BsFillEyeSlashFill
-            className="absolute top-2.5 right-3 size-5 cursor-pointer text-slate-600"
+            className="absolute top-2.5 right-3 size-5 cursor-pointer text-slate-600 dark:text-violet-700"
             onClick={() => setShowPassword((prev) => !prev)}
           />
         )}

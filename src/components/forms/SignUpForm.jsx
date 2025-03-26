@@ -1,9 +1,11 @@
 import { useState } from "react";
-
 // i: import icons
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
-
-const SignUpForm = () => {
+// i: import registration Validation
+import registrationValidation from "../../utils/RegistrationValidation";
+// i: import sweet alert
+import Swal from "sweetalert2";
+const SignUpForm = ({ setRegister }) => {
   // i: form input
   const formInput = {
     email: "",
@@ -14,6 +16,13 @@ const SignUpForm = () => {
 
   // i: state of form input
   const [form, setForm] = useState(formInput);
+
+  // i: toggle password
+  const togglePassword = {
+    password: false,
+    confirmPassword: false,
+  };
+  const [showPassword, setShowPassword] = useState(togglePassword);
 
   // i: handle form Input Change
   const handleInputChange = (e) => {
@@ -27,17 +36,40 @@ const SignUpForm = () => {
     setForm({ ...form, [name]: checked });
     console.log(form);
   };
-  // i: toggle password
-  const togglePassword = {
-    password: false,
-    confirmPassword: false,
+
+  // i: handle form submission
+  const handleRegistrationSubmission = (e) => {
+    e.preventDefault();
+    const result = registrationValidation(form);
+    if (result) {
+      Swal.fire({
+        width: 350,
+        title: "Registration",
+        text: "Registration Successful",
+        icon: "success",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Ok",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setRegister((prev) => !prev);
+        }
+      });
+    } else {
+      Swal.fire({
+        width: 350,
+        title: "Registration",
+        text: "Registration Failed",
+        icon: "error",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "Ok",
+      });
+    }
   };
-  const [showPassword, setShowPassword] = useState(togglePassword);
 
   return (
     <form
       className="h-full p-5 dark:bg-slate-500"
-      onSubmit={(e) => handleInputChange(e)}
+      onSubmit={(e) => handleRegistrationSubmission(e)}
     >
       <h2 className="my-5 text-center text-3xl font-semibold dark:text-white">
         Create Account
@@ -66,7 +98,7 @@ const SignUpForm = () => {
         />
         {showPassword.password ? (
           <BsFillEyeFill
-            className="absolute top-2.5 right-3 size-5 cursor-pointer text-slate-600"
+            className="absolute top-2.5 right-3 size-5 cursor-pointer text-slate-600 dark:text-violet-700"
             onClick={() =>
               setShowPassword({
                 ...showPassword,
@@ -76,7 +108,7 @@ const SignUpForm = () => {
           />
         ) : (
           <BsFillEyeSlashFill
-            className="absolute top-2.5 right-3 size-5 cursor-pointer text-slate-600"
+            className="absolute top-2.5 right-3 size-5 cursor-pointer text-slate-600 dark:text-violet-700"
             onClick={() =>
               setShowPassword({
                 ...showPassword,
@@ -102,7 +134,7 @@ const SignUpForm = () => {
         />
         {showPassword.confirmPassword ? (
           <BsFillEyeFill
-            className="absolute top-2.5 right-3 size-5 cursor-pointer text-slate-600"
+            className="absolute top-2.5 right-3 size-5 cursor-pointer text-slate-600 dark:text-violet-700"
             onClick={() =>
               setShowPassword({
                 ...showPassword,
@@ -112,7 +144,7 @@ const SignUpForm = () => {
           />
         ) : (
           <BsFillEyeSlashFill
-            className="absolute top-2.5 right-3 size-5 cursor-pointer text-slate-600"
+            className="absolute top-2.5 right-3 size-5 cursor-pointer text-slate-600 dark:text-violet-700"
             onClick={() =>
               setShowPassword({
                 ...showPassword,
